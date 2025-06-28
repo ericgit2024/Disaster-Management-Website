@@ -1,0 +1,13 @@
+{
+  "firstName": "Test",
+  "lastName": "Admin",
+  "email": "test_admin@example.com",
+  "phone": "1234567890",
+  "password": "$2b$10$YourHashedPasswordHere",
+  "organization": "DisasterGuard",
+  "position": "System Administrator",
+  "department": "IT",
+  "role": "admin",
+  "files": ["sample_verification.pdf"],
+  "registeredAt": "2023-12-20T10:00:00.000Z"
+}

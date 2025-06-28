@@ -1,0 +1,81 @@
+.volunteer-management {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.volunteer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.volunteer-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+.status-active {
+    background-color: #e6f4ea;
+    color: #34a853;
+}
+
+.status-inactive {
+    background-color: #fce8e6;
+    color: #ea4335;
+}
+
+.volunteer-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.volunteer-actions button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-volunteer {
+    background-color: #1a73e8;
+    color: white;
+}
+
+.remove-volunteer {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-volunteer:hover {
+    background-color: #1557b0;
+}
+
+.remove-volunteer:hover {
+    background-color: #bb2d3b;
+} 

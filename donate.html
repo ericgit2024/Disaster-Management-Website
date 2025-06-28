@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/donate.css">
+    <link rel="stylesheet" href="css/chat-bot.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="donate.html" class="active">Donate</a></li>
+                <li><a href="volunteer-dashboard.html">Dashboard</a></li>
+                <li><a href="index.html" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="donation-container">
+            <div class="donation-header">
+                <h2>Support Kerala Disaster Relief</h2>
+                <p>Your contribution can make a significant difference in helping communities affected by natural disasters in Kerala. Choose from our verified donation channels below.</p>
+            </div>
+
+            <div class="donation-options">
+                <!-- CM's Relief Fund -->
+                <div class="donation-card">
+                    <h3><span class="material-icons">volunteer_activism</span>Chief Minister's Disaster Relief Fund</h3>
+                    <div class="verification-badge">
+                        <span class="material-icons">verified</span> Official Government Channel
+                    </div>
+                    <p>Direct contribution to Kerala's official disaster relief fund. Your donation will be used for immediate relief and rehabilitation efforts.</p>
+                    <div class="donation-info">
+                        <h4>Bank Details</h4>
+                        <ul>
+                            <li><strong>Account Name:</strong> Chief Minister's Disaster Relief Fund</li>
+                            <li><strong>Account Number:</strong> 67319948232</li>
+                            <li><strong>Bank:</strong> State Bank of India</li>
+                            <li><strong>IFSC Code:</strong> SBIN0070028</li>
+                            <li><strong>Branch:</strong> City Branch, Thiruvananthapuram</li>
+                        </ul>
+                    </div>
+                    <a href="https://donation.cmdrf.kerala.gov.in/" target="_blank" class="donate-button">
+                        <span class="material-icons">favorite</span> Donate to CMDRF
+                    </a>
+                </div>
+            </div>
+
+            
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DisasterGuard</h3>
+                <p>Supporting Kerala's disaster relief and recovery efforts</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Add the chatbot script -->
+    <script src="js/chat-bot.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle logout
+            document.getElementById('logout').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('disasterguard_user');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html> 

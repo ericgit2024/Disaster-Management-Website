@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="50" y="50" font-family="Arial" font-size="20" fill="black">Sample Admin Verification Document</text>
+  <text x="50" y="100" font-family="Arial" font-size="16" fill="black">Name: Test Admin</text>
+  <text x="50" y="130" font-family="Arial" font-size="16" fill="black">Organization: DisasterGuard</text>
+  <text x="50" y="160" font-family="Arial" font-size="16" fill="black">Position: System Administrator</text>
+  <text x="50" y="190" font-family="Arial" font-size="16" fill="black">Department: IT</text>
+  <text x="50" y="220" font-family="Arial" font-size="16" fill="black">Date: 2023-12-20</text>
+</svg>

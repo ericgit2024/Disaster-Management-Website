@@ -1,0 +1,13 @@
+{
+  "firstName": "Test",
+  "lastName": "Volunteer",
+  "email": "test_volunteer@example.com",
+  "phone": "1234567890",
+  "password": "$2b$10$XcQZgB6Fg3yYqE9KzH9o8eVJ9oKDXl0KC0yJwjH0q0Xh1jR5kzXmK",
+  "skills": ["medical", "search_rescue"],
+  "availability": "anytime",
+  "location": "Ernakulam",
+  "files": ["sample_id.pdf"],
+  "role": "volunteer",
+  "registeredAt": "2024-01-20T10:00:00.000Z"
+}

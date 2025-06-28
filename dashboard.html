@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Dashboard - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/chat-bot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* AI Assistant Button Styles */
+        .ai-assistant-button {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #1a73e8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .ai-assistant-button:hover {
+            transform: scale(1.1);
+            background-color: #1565c0;
+        }
+
+        .ai-assistant-button i {
+            font-size: 24px;
+        }
+
+        /* Hidden by default, shown when clicked */
+        .ai-assistant-panel {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="floods.html">Floods</a></li>
+                <li><a href="cyclones.html">Cyclones</a></li>
+                <li><a href="landslides.html">Landslides</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div>
+                    <h2 class="dashboard-title">Volunteer Dashboard</h2>
+                    <p class="dashboard-welcome">Welcome, <span id="user-name">Volunteer</span>!</p>
+                </div>
+                <button id="logout-btn" class="btn secondary">Logout</button>
+            </div>
+            
+            <div class="dashboard-sections">
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-user-circle"></i>Your Profile</h3>
+                    <ul class="profile-details" id="profile-details">
+                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> <span id="user-email">Loading...</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> <span id="user-location">Loading...</span></li>
+                        <li><i class="fas fa-calendar-check"></i> <strong>Registered:</strong> <span id="user-registered">Loading...</span></li>
+                        <li>
+                            <i class="fas fa-tools"></i> <strong>Skills:</strong> 
+                            <div id="user-skills" class="skill-badges">
+                                <div class="empty-state">Loading skills...</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div style="text-align: right; margin-top: 20px;">
+                        <a href="#" id="edit-profile-btn" class="btn secondary">Edit Profile</a>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-bell"></i>Active Disaster Alerts</h3>
+                    <div id="active-alerts">
+                        <!-- Alert container will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-sections">
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-clipboard-list"></i>Your Upcoming Assignments</h3>
+                    <div id="volunteer-assignments">
+                        <div class="empty-state">
+                            <i class="fas fa-calendar-day"></i>
+                            <p>You don't have any upcoming volunteer assignments</p>
+                            <p>Check the active alerts to find opportunities</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-history"></i>Recent Activity</h3>
+                    <div id="recent-activity">
+                        <div class="empty-state">
+                            <i class="fas fa-hourglass-start"></i>
+                            <p>No recent activity to display</p>
+                            <p>Your volunteer activities will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" class="emergency-button">
+                <i class="fas fa-exclamation-triangle"></i> Report Emergency
+            </a>
+        </div>
+    </main>
+
+    <!-- AI Assistant Button -->
+    <div class="ai-assistant-button" id="ai-assistant-toggle">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- AI Assistant Panel -->
+    <div class="ai-assistant-panel">
+        <div class="ai-header">
+            <h3><i class="fas fa-robot"></i> AI Disaster Assistant</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="chat-area" id="chat-messages">
+            <div class="message ai">
+                <div class="message-content">
+                    <p>Hello! I'm your DisasterGuard AI Assistant. How can I help you prepare for or respond to disasters today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="question-buttons" id="question-buttons">
+            <!-- Question buttons will be populated by JavaScript -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your question...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i> Send</button>
+        </div>
+    </div>
+
+    
+
+    <script src="js/main.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth-service.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/protect-route.js"></script>
+    <script src="js/chat-bot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in, if not redirect to login
+            const userData = JSON.parse(localStorage.getItem('disasterguard_user'));
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Populate user data in the dashboard
+            document.getElementById('user-name').textContent = userData.name || 'Volunteer';
+            document.getElementById('user-email').textContent = userData.email || 'Not provided';
+            document.getElementById('user-location').textContent = userData.location || 'Not provided';
+            
+            // Format registration date
+            const registered = userData.registered ? new Date(userData.registered) : new Date();
+            document.getElementById('user-registered').textContent = registered.toLocaleDateString();
+            
+            // Populate skills
+            const skillsContainer = document.getElementById('user-skills');
+            if (userData.skills && userData.skills.length > 0) {
+                skillsContainer.innerHTML = '';
+                userData.skills.forEach(skill => {
+                    const skillBadge = document.createElement('span');
+                    skillBadge.className = 'skill-badge';
+                    
+                    // Format skill name (replace underscores with spaces and capitalize)
+                    const formattedSkill = skill.replace(/_/g, ' ')
+                        .split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                        
+                    skillBadge.textContent = formattedSkill;
+                    skillsContainer.appendChild(skillBadge);
+                });
+            } else {
+                skillsContainer.innerHTML = '<p>No skills specified</p>';
+            }
+            
+            // Sample alerts data - in a real application, this would come from a server
+            // Currently showing no alerts for demo purposes
+            const alertsData = [];
+            
+            // Populate active alerts
+            const alertsContainer = document.getElementById('active-alerts');
+            if (alertsData && alertsData.length > 0) {
+                const alertsList = document.createElement('ul');
+                alertsList.className = 'alert-list';
+                
+                alertsData.forEach(alert => {
+                    const alertItem = document.createElement('li');
+                    alertItem.className = 'alert-item';
+                    alertItem.innerHTML = `
+                        <h4>${alert.title}</h4>
+                        <p>${alert.description}</p>
+                        <div class="alert-info">
+                            <span><i class="fas fa-map-marker-alt"></i> ${alert.location}</span>
+                            <span><i class="fas fa-calendar-alt"></i> ${alert.date}</span>
+                        </div>
+                        <div class="alert-actions">
+                            <a href="#" class="btn secondary">View Details</a>
+                            <a href="#" class="btn primary">Volunteer</a>
+                        </div>
+                    `;
+                    alertsList.appendChild(alertItem);
+                });
+                
+                alertsContainer.appendChild(alertsList);
+            } else {
+                // No active alerts
+                const emptyState = document.createElement('div');
+                emptyState.className = 'empty-state';
+                emptyState.innerHTML = `
+                    <i class="fas fa-bell-slash"></i>
+                    <p>No active alerts at the moment</p>
+                    <p>Check back later for disaster response opportunities</p>
+                `;
+                alertsContainer.appendChild(emptyState);
+            }
+            
+            // Handle edit profile button
+            document.getElementById('edit-profile-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Create a simple popup form for editing profile
+                const profileEditPopup = document.createElement('div');
+                profileEditPopup.className = 'popup-overlay';
+                
+                const popupContent = document.createElement('div');
+                popupContent.className = 'popup-content';
+                
+                // Form content
+                popupContent.innerHTML = `
+                    <h3>Edit Profile</h3>
+                    <form id="edit-profile-form">
+                        <div class="form-group">
+                            <label for="edit-name">Name</label>
+                            <input type="text" id="edit-name" value="${userData.name}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-email">Email</label>
+                            <input type="email" id="edit-email" value="${userData.email}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-location">Location</label>
+                            <input type="text" id="edit-location" value="${userData.location || ''}">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" id="cancel-edit" class="btn secondary">Cancel</button>
+                            <button type="submit" class="btn primary">Save Changes</button>
+                        </div>
+                    </form>
+                `;
+                
+                // Add the popup to the document
+                profileEditPopup.appendChild(popupContent);
+                document.body.appendChild(profileEditPopup);
+                
+                // Handle cancel button
+                document.getElementById('cancel-edit').addEventListener('click', function() {
+                    document.body.removeChild(profileEditPopup);
+                });
+                
+                // Handle form submission
+                document.getElementById('edit-profile-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Update user data
+                    userData.name = document.getElementById('edit-name').value;
+                    userData.email = document.getElementById('edit-email').value;
+                    userData.location = document.getElementById('edit-location').value;
+                    
+                    // Save updated data
+                    localStorage.setItem('disasterguard_user', JSON.stringify(userData));
+                    
+                    // Update the UI
+                    document.getElementById('user-name').textContent = userData.name;
+                    document.getElementById('user-email').textContent = userData.email;
+                    document.getElementById('user-location').textContent = userData.location;
+                    
+                    // Close the popup
+                    document.body.removeChild(profileEditPopup);
+                    
+                    // Show a success message
+                    alert('Profile updated successfully!');
+                });
+            });
+            
+            // Handle logout
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('disasterguard_user');
+                window.location.href = 'index.html';
+            });
+
+            // AI Assistant Toggle
+            const toggleButton = document.getElementById('ai-assistant-toggle');
+            const assistantPanel = document.querySelector('.ai-assistant-panel');
+            
+            toggleButton.addEventListener('click', function() {
+                assistantPanel.style.display = assistantPanel.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Close button in the panel
+            const closeButton = document.querySelector('.close-btn');
+            closeButton.addEventListener('click', function() {
+                assistantPanel.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
